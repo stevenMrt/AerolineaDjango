@@ -1,0 +1,39 @@
+{% extends 'base.html' %} <!-- Extiende la plantilla base.html -->
+
+{% block contenido %} <!-- Inicia el bloque de contenido -->
+
+    <h2>Lista de aeropuertos</h2> <!-- Título de la página -->
+
+    <a href="{% url 'agregar_aeropuertos' %}" class="btn btn-success mb-3">Agregar aeropuerto</a> <!-- Botón para agregar un nuevo producto -->
+
+    <table class="table table-bordered"> <!-- Inicia la tabla con clases de Bootstrap -->
+        <tr> <!-- Fila de encabezado de la tabla -->
+            <th>ID_aeropuerto</th>
+            <th>Nombre_a</th> <!-- Encabezado: Nombre -->
+            <th>Direccion_a</th> <!-- Encabezado: Descripción -->
+            <th>Ciudad_a</th> <!-- Encabezado: Precio -->
+            <th>Pais_a</th>
+            <th>Num_pistas</th>
+            <th>Telefono</th>
+            <th>Edicion</th> <!-- Encabezado: Acciones -->
+        </tr>
+
+        {% for aeropuerto in aeropuerto %} <!-- Itera sobre la lista de productos -->
+            <tr> 
+                <td>{{ aeropuerto.id_aeropuerto }}</td>
+                <td>{{ aeropuerto.nombre_a }}</td>
+                <td>{{ aeropuerto.direccion_a}}</td> 
+                <td>{{ aeropuerto.ciudad_a }}</td> 
+                <td>{{ aeropuerto.pais_a }}</td>
+                <td>{{ aeropuerto.num_pistas }}</td>
+                <td>{{ aeropuerto.telefono }}</td> <!-- Muestra el precio del producto -->
+                <td> <!-- Columna de acciones -->
+                    <a href="{% url 'editar_aeropuertos' aeropuerto.id_aeropuerto %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_aeropuertos' aeropuerto.id_aeropuerto %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %} <!-- Fin del ciclo for -->
+
+    </table> <!-- Fin de la tabla -->
+
+{% endblock %} <!-- Fin del bloque de contenido -->
